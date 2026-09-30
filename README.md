@@ -6,7 +6,7 @@
 
 Aplicação de linha de comando para **abertura, registro e listagem de chamados de suporte de TI**, inspirada no fluxo real de um service desk. O projeto está em evolução contínua e serve como laboratório para praticar lógica de programação, modelagem de dados e boas práticas de código.
 
-> 🚧 **Projeto em construção** — novas funcionalidades estão sendo adicionadas aos poucos (veja o [Roadmap](#roadmap)).
+> 🚧 **Projeto em construção** — novas funcionalidades estão sendo adicionadas aos poucos.
 > 
 ---
 
@@ -126,7 +126,7 @@ ID: 1, Nome: Maria Silva, Descrição: Computador não liga, Categoria: Hardware
 Analista de Sistemas | Formado em Análise e Desenvolvimento de Sistemas
 
 - 💼 LinkedIn: [Arthur Lanzoni](https://www.linkedin.com/in/arthurlanzoni)
-- - 🐙 GitHub: [AIlanzoni](https://github.com/AIlanzoni)
+- 🐙 GitHub: [AIlanzoni](https://github.com/AIlanzoni)
 - ✉️ E-mail: arthurlanzoni08@gmail.com
 
 ---
