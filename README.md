@@ -6,8 +6,8 @@
 
 Aplicação de linha de comando para **abertura, registro e listagem de chamados de suporte de TI**, inspirada no fluxo real de um service desk. O projeto está em evolução contínua e serve como laboratório para praticar lógica de programação, modelagem de dados e boas práticas de código.
 
-> 🚧 **Projeto em construção** — novas funcionalidades estão sendo adicionadas aos poucos.
-> 
+> 🚧 **Projeto em construção** — novas funcionalidades estão sendo adicionadas aos poucos (veja o [Roadmap](#-roadmap)).
+
 ---
 
 ## 📌 Funcionalidades atuais
@@ -49,10 +49,10 @@ Cada chamado é representado por um dicionário:
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/AIlanzoni/central-de-chamados.git
+git clone https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
 
 # 2. Entre na pasta
-cd central-de-chamados
+cd NOME-DO-REPOSITORIO
 
 # 3. Execute
 python main.py
@@ -73,33 +73,15 @@ ID: 1, Nome: Maria Silva, Descrição: Computador não liga, Categoria: Hardware
 
 ## 🗺️ Roadmap
 
-### ✅ v0.1 — Base (concluído)
-- [x] Abertura de chamados com validação de categoria e prioridade
-- [x] ID sequencial e status inicial automático
-- [x] Listagem de chamados
-
-### 🚧 v0.2 — Usabilidade (em andamento)
 - [ ] Menu interativo (abrir, listar, buscar, atualizar, encerrar)
 - [ ] Atualização de status (`Aberto` → `Em andamento` → `Resolvido`)
-- [ ] Registro de data/hora de abertura e fechamento
-
-### 🔜 v0.3 — Organização do código
-- [ ] Refatoração para orientação a objetos (classe `Chamado`)
-- [ ] Separação em módulos (modelo, serviço, interface)
-
-### 🔜 v0.4 — Persistência
-- [ ] Salvar e carregar chamados em JSON
-- [ ] Migrar para banco de dados SQL (SQLite)
-
-### 🔜 v0.5 — Qualidade
-- [ ] Testes automatizados com `pytest`
-
-### 🔜 v0.6 — Consultas e métricas
 - [ ] Busca e filtros por categoria, prioridade e status
-- [ ] Relatórios (chamados por categoria, tempo médio de resolução)
-
-### 💡 Futuro
-- [ ] API REST (FastAPI) e/ou interface web
+- [ ] Registro de data/hora de abertura e fechamento
+- [ ] Persistência de dados (JSON/CSV e depois banco de dados SQL)
+- [ ] Relatórios e métricas (chamados por categoria, tempo médio de resolução)
+- [ ] Testes automatizados com `pytest`
+- [ ] Refatoração para orientação a objetos (classe `Chamado`)
+- [ ] Interface web ou API REST
 
 ---
 
@@ -125,8 +107,8 @@ ID: 1, Nome: Maria Silva, Descrição: Computador não liga, Categoria: Hardware
 **Arthur Lanzoni**
 Analista de Sistemas | Formado em Análise e Desenvolvimento de Sistemas
 
-- 💼 LinkedIn: [Arthur Lanzoni](https://www.linkedin.com/in/arthurlanzoni)
-- 🐙 GitHub: [AIlanzoni](https://github.com/AIlanzoni)
+- 💼 LinkedIn: [Arthur Lanzoni]([https://www.linkedin.com/in/SEU-PERFIL](https://www.linkedin.com/feed/foryou/))
+- 🐙 GitHub: [AIlanzoni]([https://github.com/SEU-USUARIO](https://github.com/AIlanzoni))
 - ✉️ E-mail: arthurlanzoni08@gmail.com
 
 ---
