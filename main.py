@@ -4,6 +4,14 @@ def criar_chamado(id_chamado):
     categoria = input("Digite a categoria do chamado: ")
     prioridade = input("Digite a prioridade do chamado (Alta, Média, Baixa): ")
     
+    if categoria not in ['Hardware', 'Software', 'Rede', 'Acesso', 'Suporte']:
+        print("Categoria inválida. Definindo como 'Software'.")
+        categoria = 'Software'
+    
+    if prioridade not in ['Alta', 'Média', 'Baixa']:
+        print("Prioridade inválida. Definindo como 'Baixa'.")
+        prioridade = 'Baixa'
+    
     chamado = {
         'id': id_chamado,
         'nome': name,
@@ -22,7 +30,12 @@ def adicionar_chamado(chamados):
     return chamados
 
 def listar_chamados(chamados):
-    lista_chamados = chamados
-
-    for chamado in lista_chamados:
+    
+    for chamado in chamados:
         print(f"ID: {chamado['id']}, Nome: {chamado['nome']}, Descrição: {chamado['descricao']}, Categoria: {chamado['categoria']}, Prioridade: {chamado['prioridade']}, Status: {chamado['status']}")
+        
+chamados = []
+adicionar_chamado(chamados)
+adicionar_chamado(chamados)
+listar_chamados(chamados)
+print("Chamados adicionados com sucesso!")
