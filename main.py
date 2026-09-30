@@ -20,3 +20,9 @@ def adicionar_chamado(chamados):
     chamados.append(chamado)
     
     return chamados
+
+def listar_chamados(chamados):
+    lista_chamados = chamados
+
+    for chamado in lista_chamados:
+        print(f"ID: {chamado['id']}, Nome: {chamado['nome']}, Descrição: {chamado['descricao']}, Categoria: {chamado['categoria']}, Prioridade: {chamado['prioridade']}, Status: {chamado['status']}")
