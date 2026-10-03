@@ -1,4 +1,4 @@
-# 🎫 Sistema de Chamados (Helpdesk) em Python
+# 🎫 Central de Chamados (Helpdesk) em Python
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-yellow)
@@ -12,23 +12,39 @@ Aplicação de linha de comando para **abertura, consulta e acompanhamento de ch
 
 ## 📌 Funcionalidades atuais
 
+- ✅ **Menu interativo** com navegação por opções numeradas
 - ✅ Abertura de chamados com solicitante, descrição, categoria e prioridade
-- ✅ Validação de categoria e prioridade, com nova solicitação até o dado ser válido
-- ✅ Geração automática de ID sequencial
-- ✅ Status inicial automático (`Aberto`)
+- ✅ Validação de categoria e prioridade, solicitando o dado novamente até ficar correto
+- ✅ Geração automática de ID sequencial e status inicial (`aberto`)
 - ✅ Listagem de todos os chamados registrados
 - ✅ Busca de chamado por ID
-- ✅ Atualização de status (`Aberto`, `Em andamento`, `Concluído`)
+- ✅ Atualização de status (`aberto`, `em andamento`, `concluído`)
 - ✅ Alteração de prioridade de um chamado existente
+- ✅ Remoção de chamados
+- ✅ Tratamento de entradas inválidas (ex.: texto no lugar de número)
+- ✅ Normalização das entradas (ignora espaços extras e diferenças entre maiúsculas e minúsculas)
+
+### Menu
+
+```text
+===== CENTRAL DE CHAMADOS =====
+1. Adicionar chamado
+2. Listar chamados
+3. Buscar chamado
+4. Atualizar status do chamado
+5. Alterar prioridade do chamado
+6. Remover chamado
+0. Sair
+```
 
 ### Categorias aceitas
-`Hardware` · `Software` · `Rede` · `Acesso` · `Suporte`
+`hardware` · `software` · `rede` · `acesso` · `suporte`
 
 ### Prioridades aceitas
-`Alta` · `Média` · `Baixa`
+`alta` · `média` · `baixa`
 
 ### Status disponíveis
-`Aberto` → `Em andamento` → `Concluído`
+`aberto` → `em andamento` → `concluído`
 
 ---
 
@@ -39,11 +55,11 @@ Cada chamado é representado por um dicionário:
 ```python
 {
     "id": 1,
-    "nome": "Maria Silva",
-    "descricao": "Computador não liga",
-    "categoria": "Hardware",
-    "prioridade": "Alta",
-    "status": "Aberto"
+    "nome": "maria silva",
+    "descricao": "computador não liga",
+    "categoria": "hardware",
+    "prioridade": "alta",
+    "status": "aberto"
 }
 ```
 
@@ -53,12 +69,14 @@ Cada chamado é representado por um dicionário:
 
 | Função | O que faz |
 |---|---|
+| `main()` | Exibe o menu e direciona para cada operação |
 | `criar_chamado(id_chamado)` | Coleta e valida os dados e monta o chamado |
 | `adicionar_chamado(chamados)` | Gera o ID e adiciona o chamado à lista |
 | `listar_chamados(chamados)` | Exibe todos os chamados registrados |
 | `buscar_chamados(chamados)` | Localiza um chamado pelo ID |
 | `atualizar_status(chamados)` | Altera o status de um chamado |
 | `alterar_prioridade(chamados)` | Altera a prioridade de um chamado |
+| `remover_chamado(chamados)` | Remove um chamado pelo ID |
 
 ---
 
@@ -80,11 +98,13 @@ python main.py
 ### Exemplo de uso
 
 ```text
+Escolha uma opção: 1
 Digite o nome do solicitante: Maria Silva
 Digite a descrição do chamado: Computador não liga
 Digite a categoria do chamado: Hardware
 Digite a prioridade do chamado (Alta, Média, Baixa): Alta
-...
+
+Escolha uma opção: 4
 Digite o ID do chamado que deseja buscar: 1
 Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 ```
@@ -101,22 +121,26 @@ Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 - [x] Listagem de chamados
 
 ### 🚧 v0.2 — Usabilidade (em andamento)
+- [x] Menu interativo
 - [x] Busca de chamado por ID
-- [x] Atualização de status (`Aberto` → `Em andamento` → `Concluído`)
+- [x] Atualização de status
 - [x] Alteração de prioridade
-- [ ] Menu interativo (abrir, listar, buscar, atualizar, encerrar)
+- [x] Remoção de chamados
+- [x] Tratamento de entradas inválidas
+- [ ] Opção de cancelar uma operação ao informar um ID inexistente
+- [ ] Garantir IDs únicos mesmo após remoções
 - [ ] Registro de data/hora de abertura e fechamento
 
 ### 🔜 v0.3 — Organização do código
 - [ ] Refatoração para orientação a objetos (classe `Chamado`)
 - [ ] Separação em módulos (modelo, serviço, interface)
+- [ ] Formatação amigável na exibição dos chamados
 
 ### 🔜 v0.4 — Persistência
 - [ ] Salvar e carregar chamados em JSON
 - [ ] Migrar para banco de dados SQL (SQLite)
 
 ### 🔜 v0.5 — Qualidade
-- [ ] Tratamento de entradas inválidas (ex.: ID não numérico)
 - [ ] Testes automatizados com `pytest`
 
 ### 🔜 v0.6 — Consultas e métricas
@@ -132,7 +156,7 @@ Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 
 - **Python 3**
 - Estruturas de dados nativas (listas e dicionários)
-- Funções, laços de repetição e validação de entrada
+- Funções, laços de repetição e tratamento de exceções (`try/except`)
 
 ---
 
