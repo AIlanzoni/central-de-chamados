@@ -12,17 +12,19 @@ Aplicação de linha de comando para **abertura, consulta e acompanhamento de ch
 
 ## 📌 Funcionalidades atuais
 
-- ✅ **Menu interativo** com navegação por opções numeradas
+- ✅ Menu interativo com navegação por opções numeradas
 - ✅ Abertura de chamados com solicitante, descrição, categoria e prioridade
-- ✅ Validação de categoria e prioridade, solicitando o dado novamente até ficar correto
-- ✅ Geração automática de ID sequencial e status inicial (`aberto`)
+- ✅ Validação de categoria, prioridade e status
+- ✅ Geração de ID aleatório entre 1 e 1000, com verificação para evitar duplicidade entre chamados atualmente registrados
+- ✅ Status inicial automático (`aberto`)
 - ✅ Listagem de todos os chamados registrados
 - ✅ Busca de chamado por ID
 - ✅ Atualização de status (`aberto`, `em andamento`, `concluído`)
 - ✅ Alteração de prioridade de um chamado existente
 - ✅ Remoção de chamados
-- ✅ Tratamento de entradas inválidas (ex.: texto no lugar de número)
-- ✅ Normalização das entradas (ignora espaços extras e diferenças entre maiúsculas e minúsculas)
+- ✅ Filtro de chamados por status
+- ✅ Tratamento de entradas inválidas em campos numéricos
+- ✅ Normalização de texto (remove espaços nas pontas e converte para minúsculas)
 
 ### Menu
 
@@ -34,6 +36,7 @@ Aplicação de linha de comando para **abertura, consulta e acompanhamento de ch
 4. Atualizar status do chamado
 5. Alterar prioridade do chamado
 6. Remover chamado
+7. Filtrar status dos chamados
 0. Sair
 ```
 
@@ -44,7 +47,7 @@ Aplicação de linha de comando para **abertura, consulta e acompanhamento de ch
 `alta` · `média` · `baixa`
 
 ### Status disponíveis
-`aberto` → `em andamento` → `concluído`
+`aberto` · `em andamento` · `concluído`
 
 ---
 
@@ -54,7 +57,7 @@ Cada chamado é representado por um dicionário:
 
 ```python
 {
-    "id": 1,
+    "id": 427,
     "nome": "maria silva",
     "descricao": "computador não liga",
     "categoria": "hardware",
@@ -63,6 +66,8 @@ Cada chamado é representado por um dicionário:
 }
 ```
 
+O ID acima é apenas um exemplo. No código atual, ele é sorteado aleatoriamente entre 1 e 1000.
+
 ---
 
 ## ⚙️ Principais funções
@@ -70,13 +75,14 @@ Cada chamado é representado por um dicionário:
 | Função | O que faz |
 |---|---|
 | `main()` | Exibe o menu e direciona para cada operação |
-| `criar_chamado(id_chamado)` | Coleta e valida os dados e monta o chamado |
-| `adicionar_chamado(chamados)` | Gera o ID e adiciona o chamado à lista |
+| `criar_chamado(id_chamado)` | Coleta os dados, valida categoria e prioridade e monta o chamado |
+| `adicionar_chamado(chamados)` | Gera um ID aleatório sem duplicar os IDs atualmente presentes e adiciona o chamado à lista |
 | `listar_chamados(chamados)` | Exibe todos os chamados registrados |
-| `buscar_chamados(chamados)` | Localiza um chamado pelo ID |
-| `atualizar_status(chamados)` | Altera o status de um chamado |
-| `alterar_prioridade(chamados)` | Altera a prioridade de um chamado |
+| `buscar_chamados(chamados)` | Localiza um chamado pelo ID informado |
+| `atualizar_status(chamados)` | Valida e altera o status de um chamado |
+| `alterar_prioridade(chamados)` | Valida e altera a prioridade de um chamado |
 | `remover_chamado(chamados)` | Remove um chamado pelo ID |
+| `filtrar_por_status(chamados)` | Exibe os chamados que correspondem ao status informado |
 
 ---
 
@@ -91,7 +97,7 @@ git clone https://github.com/AIlanzoni/central-de-chamados.git
 # 2. Entre na pasta
 cd central-de-chamados
 
-# 3. Execute
+# 3. Execute (ajuste o nome do arquivo, se necessário)
 python main.py
 ```
 
@@ -104,9 +110,8 @@ Digite a descrição do chamado: Computador não liga
 Digite a categoria do chamado: Hardware
 Digite a prioridade do chamado (Alta, Média, Baixa): Alta
 
-Escolha uma opção: 4
-Digite o ID do chamado que deseja buscar: 1
-Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
+Escolha uma opção: 7
+Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): Aberto
 ```
 
 ---
@@ -117,7 +122,7 @@ Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 
 ### ✅ v0.1 — Base (concluído)
 - [x] Abertura de chamados com validação de categoria e prioridade
-- [x] ID sequencial e status inicial automático
+- [x] ID automático e status inicial automático
 - [x] Listagem de chamados
 
 ### 🚧 v0.2 — Usabilidade (em andamento)
@@ -126,10 +131,11 @@ Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 - [x] Atualização de status
 - [x] Alteração de prioridade
 - [x] Remoção de chamados
-- [x] Tratamento de entradas inválidas
-- [ ] Opção de cancelar uma operação ao informar um ID inexistente
-- [ ] Garantir IDs únicos mesmo após remoções
-- [ ] Registro de data/hora de abertura e fechamento
+- [x] Filtro por status
+- [x] Tratamento de entradas inválidas em campos numéricos
+- [ ] Permitir cancelar operações de busca/alteração quando o ID não for encontrado
+- [ ] Garantir IDs únicos durante toda a execução, inclusive após remoções
+- [ ] Registrar data e hora de abertura e fechamento
 
 ### 🔜 v0.3 — Organização do código
 - [ ] Refatoração para orientação a objetos (classe `Chamado`)
@@ -155,6 +161,7 @@ Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 ## 🛠️ Tecnologias
 
 - **Python 3**
+- Módulo `random` para geração de IDs
 - Estruturas de dados nativas (listas e dicionários)
 - Funções, laços de repetição e tratamento de exceções (`try/except`)
 
@@ -171,7 +178,7 @@ Digite o novo status do chamado (Aberto, Em andamento, Concluído): Em andamento
 
 ## 👤 Autor
 
-**Arthur Lanzoni**
+**Arthur Lanzoni**  
 Analista de Sistemas | Formado em Análise e Desenvolvimento de Sistemas
 
 - 💼 LinkedIn: [Arthur Lanzoni](https://www.linkedin.com/in/arthurlanzoni)
