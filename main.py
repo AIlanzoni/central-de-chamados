@@ -1,3 +1,5 @@
+import random
+
 def main():
     while True:
         print('\n===== CENTRAL DE CHAMADOS =====')
@@ -7,6 +9,7 @@ def main():
         print('4. Atualizar status do chamado')
         print('5. Alterar prioridade do chamado')
         print('6. Remover chamado')
+        print('7. Filtrar status dos chamados')
         print('0. Sair')
         try:
             opcao = int(input('\nEscolha uma opção: '))
@@ -23,6 +26,8 @@ def main():
                 print(alterar_prioridade(chamados))
             elif opcao == 6:
                 remover_chamado(chamados)
+            elif opcao == 7:
+                filtrar_por_status(chamados)
             elif opcao == 0:
                 print('Saindo do sistema...')
                 break
@@ -57,7 +62,27 @@ def criar_chamado(id_chamado):
     return chamado
 
 def adicionar_chamado(chamados):
-    chamado = criar_chamado(id_chamado=len(chamados) + 1)
+    
+    id_chamado = random.randint(1, 1000)
+    
+    for chamado in chamados:
+        if chamado['id'] == id_chamado:
+            print(f"Chamado já existe!")
+        
+    while True:
+        
+        id_existe = False
+        
+        for chamado in chamados:
+            if chamado['id'] == id_chamado:
+                id_existe = True
+
+        if id_existe:
+            id_chamado = random.randint(1, 1000)
+        else:
+            break
+            
+    chamado = criar_chamado(id_chamado=id_chamado)
     chamados.append(chamado)
     
     return chamados
@@ -135,5 +160,18 @@ def remover_chamado(chamados):
         except ValueError:
             print('Digite apenas números!')
 
+def filtrar_por_status(chamados):
+    while True:
+        filtro_status = input("Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): ").strip().lower()
+        
+        if filtro_status not in ['aberto', 'em andamento', 'concluído']:
+                    print("Status inválido!")
+        else:
+            for chamado in chamados:
+                if chamado['status'] == filtro_status:
+                    print(f"ID: {chamado['id']}, Nome: {chamado['nome']}, Descrição: {chamado['descricao']}, Categoria: {chamado['categoria']}, Prioridade: {chamado['prioridade']}, Status: {chamado['status']}")
+                
+            break
+                      
 chamados = []
 main()
