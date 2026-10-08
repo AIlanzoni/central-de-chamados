@@ -1,17 +1,18 @@
-# 🎫 Central de Chamados (Helpdesk) em Python
+# 🎫 Sistema de Chamados (Helpdesk) em Python
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-yellow)
 ![Interface](https://img.shields.io/badge/interface-CLI-lightgrey)
 
-Aplicação de linha de comando para **abertura, consulta e acompanhamento de chamados de suporte de TI**, inspirada no fluxo real de um service desk. O projeto está em evolução contínua e serve como laboratório para praticar lógica de programação, modelagem de dados e boas práticas de código.
+Aplicação de linha de comando para **abertura, registro e listagem de chamados de suporte de TI**, inspirada no fluxo real de um service desk. O projeto está em evolução contínua e serve como laboratório para praticar lógica de programação, modelagem de dados e boas práticas de código.
 
-> 🚧 **Projeto em construção** — novas funcionalidades estão sendo adicionadas aos poucos (veja o [Roadmap](#roadmap)).
-
+> 🚧 **Projeto em construção** — novas funcionalidades estão sendo adicionadas aos poucos.
+> 
 ---
 
 ## 📌 Funcionalidades atuais
 
+<<<<<<< HEAD
 - ✅ Menu interativo com navegação por opções numeradas
 - ✅ Abertura de chamados com solicitante, descrição, categoria e prioridade
 - ✅ Validação de categoria, prioridade e status
@@ -39,15 +40,26 @@ Aplicação de linha de comando para **abertura, consulta e acompanhamento de ch
 7. Filtrar status dos chamados
 0. Sair
 ```
+=======
+- ✅ Abertura de chamados com solicitante, descrição, categoria e prioridade
+- ✅ Validação de dados de entrada (categoria e prioridade) com valores padrão seguros
+- ✅ Geração automática de ID sequencial
+- ✅ Status inicial automático (`Aberto`)
+- ✅ Listagem de todos os chamados registrados
+>>>>>>> 6ddd4c4 (feat: adicionado novas funcionalidades e aplicacao a json)
 
 ### Categorias aceitas
-`hardware` · `software` · `rede` · `acesso` · `suporte`
+`Hardware` · `Software` · `Rede` · `Acesso` · `Suporte`
 
 ### Prioridades aceitas
+<<<<<<< HEAD
 `alta` · `média` · `baixa`
 
 ### Status disponíveis
 `aberto` · `em andamento` · `concluído`
+=======
+`Alta` · `Média` · `Baixa`
+>>>>>>> 6ddd4c4 (feat: adicionado novas funcionalidades e aplicacao a json)
 
 ---
 
@@ -57,12 +69,21 @@ Cada chamado é representado por um dicionário:
 
 ```python
 {
+<<<<<<< HEAD
     "id": 427,
     "nome": "maria silva",
     "descricao": "computador não liga",
     "categoria": "hardware",
     "prioridade": "alta",
     "status": "aberto"
+=======
+    "id": 1,
+    "nome": "Maria Silva",
+    "descricao": "Computador não liga",
+    "categoria": "Hardware",
+    "prioridade": "Alta",
+    "status": "Aberto"
+>>>>>>> 6ddd4c4 (feat: adicionado novas funcionalidades e aplicacao a json)
 }
 ```
 
@@ -70,6 +91,7 @@ O ID acima é apenas um exemplo. No código atual, ele é sorteado aleatoriament
 
 ---
 
+<<<<<<< HEAD
 ## ⚙️ Principais funções
 
 | Função | O que faz |
@@ -86,6 +108,8 @@ O ID acima é apenas um exemplo. No código atual, ele é sorteado aleatoriament
 
 ---
 
+=======
+>>>>>>> 6ddd4c4 (feat: adicionado novas funcionalidades e aplicacao a json)
 ## ▶️ Como executar
 
 **Pré-requisito:** Python 3.10 ou superior.
@@ -104,19 +128,21 @@ python main.py
 ### Exemplo de uso
 
 ```text
-Escolha uma opção: 1
 Digite o nome do solicitante: Maria Silva
 Digite a descrição do chamado: Computador não liga
 Digite a categoria do chamado: Hardware
 Digite a prioridade do chamado (Alta, Média, Baixa): Alta
+<<<<<<< HEAD
 
 Escolha uma opção: 7
 Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): Aberto
+=======
+...
+ID: 1, Nome: Maria Silva, Descrição: Computador não liga, Categoria: Hardware, Prioridade: Alta, Status: Aberto
+>>>>>>> 6ddd4c4 (feat: adicionado novas funcionalidades e aplicacao a json)
 ```
 
 ---
-
-<a id="roadmap"></a>
 
 ## 🗺️ Roadmap
 
@@ -126,6 +152,7 @@ Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): Aberto
 - [x] Listagem de chamados
 
 ### 🚧 v0.2 — Usabilidade (em andamento)
+<<<<<<< HEAD
 - [x] Menu interativo
 - [x] Busca de chamado por ID
 - [x] Atualização de status
@@ -136,11 +163,15 @@ Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): Aberto
 - [ ] Permitir cancelar operações de busca/alteração quando o ID não for encontrado
 - [ ] Garantir IDs únicos durante toda a execução, inclusive após remoções
 - [ ] Registrar data e hora de abertura e fechamento
+=======
+- [ ] Menu interativo (abrir, listar, buscar, atualizar, encerrar)
+- [ ] Atualização de status (`Aberto` → `Em andamento` → `Resolvido`)
+- [ ] Registro de data/hora de abertura e fechamento
+>>>>>>> 6ddd4c4 (feat: adicionado novas funcionalidades e aplicacao a json)
 
 ### 🔜 v0.3 — Organização do código
 - [ ] Refatoração para orientação a objetos (classe `Chamado`)
 - [ ] Separação em módulos (modelo, serviço, interface)
-- [ ] Formatação amigável na exibição dos chamados
 
 ### 🔜 v0.4 — Persistência
 - [ ] Salvar e carregar chamados em JSON
@@ -150,7 +181,7 @@ Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): Aberto
 - [ ] Testes automatizados com `pytest`
 
 ### 🔜 v0.6 — Consultas e métricas
-- [ ] Filtros por categoria, prioridade e status
+- [ ] Busca e filtros por categoria, prioridade e status
 - [ ] Relatórios (chamados por categoria, tempo médio de resolução)
 
 ### 💡 Futuro
@@ -163,7 +194,7 @@ Digite o status que deseja filtrar (Aberto, Em andamento, Concluído): Aberto
 - **Python 3**
 - Módulo `random` para geração de IDs
 - Estruturas de dados nativas (listas e dicionários)
-- Funções, laços de repetição e tratamento de exceções (`try/except`)
+- Funções e validação de entrada
 
 ---
 

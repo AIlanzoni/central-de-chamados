@@ -1,6 +1,9 @@
 import random
+import json
 
 def main():
+    global chamados
+    
     while True:
         print('\n===== CENTRAL DE CHAMADOS =====')
         print('1. Adicionar chamado')
@@ -10,6 +13,11 @@ def main():
         print('5. Alterar prioridade do chamado')
         print('6. Remover chamado')
         print('7. Filtrar status dos chamados')
+        print('8. Filtrar prioridade dos chamados')
+        print('9. Contar status dos chamados')
+        print('10. Contar prioridade dos chamados')
+        print('11. Salvar chamados em arquivo JSON')
+        print('12. Carregar chamados de arquivo JSON')
         print('0. Sair')
         try:
             opcao = int(input('\nEscolha uma opção: '))
@@ -28,6 +36,16 @@ def main():
                 remover_chamado(chamados)
             elif opcao == 7:
                 filtrar_por_status(chamados)
+            elif opcao == 8:
+                filtrar_por_prioridade(chamados)
+            elif opcao == 9:
+                contar_chamados_status(chamados)
+            elif opcao == 10:
+                contar_chamados_prioridade(chamados)
+            elif opcao == 11:
+                salvar_chamados(chamados)
+            elif opcao == 12:
+                chamados = carregar_chamados()
             elif opcao == 0:
                 print('Saindo do sistema...')
                 break
@@ -172,6 +190,64 @@ def filtrar_por_status(chamados):
                     print(f"ID: {chamado['id']}, Nome: {chamado['nome']}, Descrição: {chamado['descricao']}, Categoria: {chamado['categoria']}, Prioridade: {chamado['prioridade']}, Status: {chamado['status']}")
                 
             break
-                      
-chamados = []
+        
+def filtrar_por_prioridade(chamados):
+    while True:
+        filtro_prioridade = input("Digite a prioridade que deseja filtrar (Alta, Média, Baixa): ").strip().lower()
+        
+        if filtro_prioridade not in ['alta', 'média', 'baixa']:
+                    print("Prioridade inválida!")
+        else:
+            for chamado in chamados:
+                if chamado['prioridade'] == filtro_prioridade:
+                    print(f"ID: {chamado['id']}, Nome: {chamado['nome']}, Descrição: {chamado['descricao']}, Categoria: {chamado['categoria']}, Prioridade: {chamado['prioridade']}, Status: {chamado['status']}")
+                
+            break
+
+def contar_chamados_status(chamados):
+    contar_status_aberto = 0
+    contar_status_andamento = 0
+    contar_status_concluido = 0
+    
+    for chamado in chamados:
+        if chamado['status'] == 'aberto':
+            contar_status_aberto += 1
+        elif chamado['status'] == 'em andamento':
+            contar_status_andamento += 1
+        elif chamado['status'] == 'concluído':
+            contar_status_concluido += 1
+    
+    print(f"Total de chamados abertos: {contar_status_aberto}")
+    print(f"Total de chamados em andamento: {contar_status_andamento}")
+    print(f"Total de chamados concluídos: {contar_status_concluido}")
+
+def contar_chamados_prioridade(chamados):
+    contar_prioridade_alta = 0
+    contar_prioridade_media = 0
+    contar_prioridade_baixa = 0
+    
+    for chamado in chamados:
+        if chamado['prioridade'] == 'alta':
+            contar_prioridade_alta += 1
+        elif chamado['prioridade'] == 'média':
+            contar_prioridade_media += 1
+        elif chamado['prioridade'] == 'baixa':
+            contar_prioridade_baixa += 1
+    
+    print(f"Total de prioridade alta: {contar_prioridade_alta}")
+    print(f"Total de prioridade média: {contar_prioridade_media}")
+    print(f"Total de prioridade baixa: {contar_prioridade_baixa}")
+
+def salvar_chamados(chamados):
+    with open('chamados.json', 'w') as arquivo:
+        json.dump(chamados, arquivo, indent=4)
+
+def carregar_chamados():
+    try:
+        with open('chamados.json', 'r') as arquivo:
+            return json.load(arquivo)
+    except FileNotFoundError:
+        return []
+
+chamados = carregar_chamados()
 main()
